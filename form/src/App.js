@@ -40,7 +40,7 @@ export default function App() {
   };
   return (
     <div className="App">
-      HTML Css Create form task -1
+      React Create form task
       <form>
         <div class="main">
           <div>
@@ -89,16 +89,12 @@ export default function App() {
               </span>
             )}
           </div>
-          <div>
-            <lable class="lable">City of Employment </lable>
-            <input id="city" list="cityList" name="city"></input>
-
-            <datalist id="cityList">
-              <option value="Pune" />
-              <option value="Surat" />
-              <option value="Bengluru" />
-            </datalist>
-          </div>
+          <div style={{display: "flex",marginLeft:"-0.5px", alignItems:"center"}}>
+      <lable class="lable">City of Employment </lable>
+      <div>
+        <input id="password" type="text" />
+      </div>
+    </div>
           <div>
             <lable for="#web_server">Web server</lable>
             <select id="web_server">
@@ -108,7 +104,7 @@ export default function App() {
               <option value="--Choose a server--">Bengluru</option>
             </select>
           </div>
-          <fildset class="radio_wrapper">
+          <fildset style={{margin:"20px 0px"}}  class="radio_wrapper">
             <div class="radio_lable">
               <lable>Please specify your role</lable>
             </div>
@@ -131,8 +127,8 @@ export default function App() {
               </div>
             </div>
           </fildset>
-          <br></br>
-          <fildset class="radio_wrapper">
+        
+          <fildset style={{marginTop:" 10px"}} class="radio_wrapper">
             <div class="radio_lable">
               <lable>Single Sign-on to the following</lable>
             </div>

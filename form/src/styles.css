@@ -1,0 +1,39 @@
+.App {
+  font-family: sans-serif;
+}
+
+form {
+  display: flex;
+}
+.main {
+  width: 360px;
+  margin: 10px auto;
+}
+.main div {
+  margin: 3px;
+}
+lable {
+  display: inline-block;
+  width: 110px;
+}
+.radio_wrapper {
+  width: 500px;
+  display: flex;
+}
+.radio_lable {
+  display: flex;
+}
+.radio_lable lable {
+  margin: auto;
+}
+
+.btn_holder {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 20px;
+}
+
+.tost {
+  display: none;
+}

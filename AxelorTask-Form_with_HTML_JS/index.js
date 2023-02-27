@@ -1,21 +1,21 @@
 
-const name=document.getElementById("Username");
+const username=document.getElementById("Username");
 const password=document.getElementById("password");
 const tost=document.getElementById("tost");
 
-tost.style.display="none"
-name.value="";
+
+username.value="";
 password.value="";
  function InvalidMsg(){
-   
-   name.setCustomValidity('');
+ 
+   username.setCustomValidity('');
      password.setCustomValidity('');
-   console.log(name.value);
-    if (name.value==="") {
-       console.log(name.value);
-            name.setCustomValidity('Username Required');
+   console.log(username.value);
+    if (username.value==="") {
+       console.log(username.value);
+       username.setCustomValidity('Username Required');
     
-      return false;
+
         }
    
    if (password.value === "") {
@@ -23,7 +23,7 @@ password.value="";
     
       return false;
         }else{
-            if (password.value.length < 7) {
+            if (password.value.length < 8) {
             password.setCustomValidity('Minimum 8 digit long password required !');
     
       return false;
@@ -36,9 +36,9 @@ password.value="";
         }
         
         }
-  name.setCustomValidity('');
+        username.setCustomValidity('');
            password.setCustomValidity('');
         
-  tost.style.display="block"
+alert("Login Sucessfull...!");
         return true;
  }

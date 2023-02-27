@@ -1,25 +1,31 @@
-HTML Css Create form task  -1
-
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/AxelorTask-Form_with_HTML_JS/index.css">
+<script src="/AxelorTask-Form_with_HTML_JS/index.js" defer></script>
+</head>
+<body>
 <form>
   <div class="main">
     <form >
+      </form>
+      <div>
       <lable class="lable" for="#Username">Username: </lable>
       <input id="Username"  
-
              type="text" />
-    </d>
+            </div>
     <div>
-      <lable class="lable" for="#password">Password: </lable>
+      <lable class="lable" for="#password">Password:</lable>
       <input id="password" type="password" />
     </div>
-    <div>
+    <div style="display: flex; align-items:center;">
       <lable class="lable">City of Employment </lable>
-      <input id="city" list="cityList" name="city" /></lable>
-      <datalist id="cityList">
-        <option value="Pune" />
-        <option value="Surat" />
-        <option value="Bengluru" />
-      </datalist>
+      <div>
+        <input id="password" type="text" />
+      </div>
     </div>
     <div>
 
@@ -32,7 +38,7 @@ HTML Css Create form task  -1
 
       </select>
     </div>
-    <fildset class="radio_wrapper">
+    <fildset style="margin-top: 15px;" class="radio_wrapper">
       <div class="radio_lable">
         <lable>Please specify your role</lable>
       </div>
@@ -55,8 +61,8 @@ HTML Css Create form task  -1
         </div>
       </div>
     </fildset>
-    <br>
-    <fildset class="radio_wrapper">
+ 
+    <fildset style="margin-top: 15px;" class="radio_wrapper">
       <div class="radio_lable">
         <lable>Single Sign-on to the following</lable>
       </div>
@@ -76,11 +82,13 @@ HTML Css Create form task  -1
       </div>
     </fildset>
 
-    <div class="btn_holder">
+    <div  class="btn_holder">
       <button class="btn" onclick="InvalidMsg()"> Login</button>
 
       <button class="btn" type="reset"> Reset</button>
     </div>
-<h1 id="tost">Login Sucessfull</h1>
+
   </div>
 </form>
+</body>
+</html>

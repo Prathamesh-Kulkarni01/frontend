@@ -12,26 +12,20 @@ password.value="";
      password.setCustomValidity('');
    console.log(username.value);
     if (username.value==="") {
-       console.log(username.value);
        username.setCustomValidity('Username Required');
-    
-
         }
    
    if (password.value === "") {
             password.setCustomValidity('Password required !' );
-    
       return false;
         }else{
             if (password.value.length < 8) {
             password.setCustomValidity('Minimum 8 digit long password required !');
-    
       return false;
         }
           console.log(password.value.search(/[0-9]/));
           if (password.value.search(/[0-9]/) <0){
             password.setCustomValidity('Password must contain atleast one digit !');
-    
       return false;
         }
         

@@ -39,9 +39,14 @@ lable{
   
 }
 
+<<<<<<< HEAD:AxelorTask-Form_with_HTML ONly /index.css
 .tost{
   display:none
 }
 .btn{
   margin-right:8px;
+=======
+.btn{
+  margin-right: 8px;
+>>>>>>> js:AxelorTask-Form_with_HTML_JS/index.css
 }

@@ -11,10 +11,11 @@ const Nav = () => {
     <a href="/index.html" class="logo">Prathamesh</a>
       <div class="nav-link-container">
         <ul class="navlinks">
-          <a href="/work.html" class="links"> Work</a>
-          <a href="/about.html" class="links">About</a>
-          <a href="/blog.html" class="links">Blog</a>
-          <a href="/contacts.html" class="links">Contact</a>
+        <a href="/about" class="links">About</a>
+          <a href="/work" class="links"> Work</a>
+        
+          <a href="/blogs" class="links">Blog</a>
+          <a href="/contacts" class="links">Contact</a>
         </ul>
       </div>
 

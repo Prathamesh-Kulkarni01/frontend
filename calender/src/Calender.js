@@ -1,62 +1,64 @@
-import logo from "./logo.svg";
+
 import "./App.css";
-import { useEffect, useInsertionEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
-  var date = new Date();
-  var YearNow = date.getFullYear();
-  var DayNow = date.getDate();
-  var MonthNow = date.getMonth();
-  console.log(DayNow);
-  // const [selectedDate, setselectedDate] = useState(DayNow)
-  const [selectedM, setselectedMonth] = useState(MonthNow);
 
-  const [selectedY, setselectedYear] = useState(YearNow);
-  const [inputDate, setInputDate] = useState(
-    date.getFullYear().toString() +
-      "-" +
-      (date.getMonth() + 1).toString().padStart(2, 0)
-  );
 
-  const [NoOfDays, setNoOfDays] = useState(0);
-  const [MonthStartsOn, setMonthStartsOn] = useState(0);
 
-  useEffect(() => {
-    return () => {};
-  }, []);
+  
+  const date = new Date();
 
-  useEffect(() => {
-    getDays();
-    return () => {};
-  }, [NoOfDays, MonthStartsOn, inputDate]);
+  const yearNow = date.getFullYear();
+  const dayNow = date.getDate();
+  const monthNow = date.getMonth();
+  const [inputDate, setInputDate] = useState(yearNow.toString() +"-" +(monthNow+ 1).toString().padStart(2, 0));
+  const selected=new Date(inputDate);
+  const selectedM = selected.getMonth()+1;
+  const selectedY = selected.getFullYear();
+  const noOfDays= new Date(selectedY, selectedM, 0).getDate();
+  const monthStartsOn =new Date(selectedY + "-" + selectedM + "-01").getDay();
 
- 
+const weekdays=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-  const getDays = () => {
-    var selectedMonth = inputDate.substring(
-      inputDate.length - 2,
-      inputDate.length - 0
-    );
-    setselectedMonth(selectedMonth);
-    //extracting year and month from selected date
-    var selectedYear = inputDate.substring(0, 4);
-    setselectedYear(selectedY);
-    var dayCount = new Date(selectedYear, selectedMonth, 0).getDate();
+ const onMonthSwapped=(x)=>{
 
-    //Calculating No of Days in this Month
-    var day = new Date(selectedYear + "-" + selectedMonth + "-01").getDay();
-    setNoOfDays(dayCount);
-    setMonthStartsOn(day);
-
-    console.log("kjgkh", parseInt(NoOfDays / 7));
-  };
+    let selected=new Date(inputDate);
+    if(x===-1&&selected.getMonth()===0){
+      selected.setMonth(11);
+      selected.setFullYear(selected.getFullYear()-1);
+      swappDate(selected,0,0);
+    }else if(x===1&&selected.getMonth()===11){
+      selected.setMonth(0);
+      selected.setFullYear(selected.getFullYear()+1);
+      swappDate(selected,0,0);
+    }else{
+      swappDate(selected,x,0);
+    }
+    
+    }
+    const onYearSwapped=(x)=>{
+      let selected=new Date(inputDate);
+    swappDate(selected,0,x);
+   
+    }
+    
+    const swappDate=(d,m,y)=>{
+     setInputDate(
+        (d.getFullYear()+y).toString() +
+        "-" +
+        ((d.getMonth() + 1)+m).toString().padStart(2, 0));
+        
+    }
 
   return (
     <div className="App">
-      <div class="main">
-        <div class="top">
-          <div style={{ flexDirection: "column" }} class="center">
-            <h2 style={{ marginTop: "60px" }}>Select Date </h2>
+      <div className="main">
+        <div className="top">
+          <div style={{ flexDirection: "column" }} className="center">
+            <h2 style={{ marginTop: "50px" }}>Select Date </h2>
+            <div style={{width: "100%",display: "flex",alignItems:"center",justifyContent:" center"}}>
+            <p onClick={()=>onMonthSwapped(-1)}id="Y_left" style={{backgroundColor: "rgb(255, 255, 255)",padding: "10px", borderRadius: "50%",width: "15px",margin: "auto"}}>&lt;</p>
             <input
               id="dateIp"
               type="month"
@@ -66,62 +68,62 @@ function App() {
               value={inputDate}
               onChange={(e) => setInputDate(e.target.value)}
             ></input>
+                        <p onClick={()=>onMonthSwapped(1)} id="Y_left" style={{backgroundColor: "rgb(255, 255, 255)",padding: "10px", borderRadius: "50%",width: "15px",margin: "auto"}}>&gt;</p>
           </div>
+          </div>
+          <div style={{display: "flex"}}>
+          <p onClick={()=>onYearSwapped(-1)} id="Y_left" style={{backgroundColor: "rgb(255, 255, 255)",padding: "3px", borderRadius: "50px",width: "50px",margin: "5px auto"}}>&lt;&lt;&lt;</p>
+          <p onClick={()=>onYearSwapped(1)} id="Y_left" style={{backgroundColor: "rgb(255, 255, 255)",padding: "3px", borderRadius: "50px",width: "50px",margin: "5px auto"}}>&gt;&gt;&gt;</p>
         </div>
-        <div style={{ marginTop: "10px" }} class="conteiner">
-          <table id="table" class="table">
-            <tr id="ll" class="tr">
-              <th class="th">Sun</th>
-              <th class="th">Mon</th>
-              <th class="th">Tue</th>
-              <th class="th">Wed</th>
-              <th class="th">Thu</th>
-              <th class="th">Fri</th>
-              <th class="th">Sat</th>
-            </tr>
-            <tr class="tr"></tr>
-            {[...Array(parseInt((NoOfDays + MonthStartsOn) / 7))].map(
+        </div>
+        <div style={{ marginTop: "10px" }} className="conteiner">
+          <table id="table" className="table">
+            <thead id="ll" className="tr">
+              {weekdays.map(val=> <th key={val} className="th">{val}</th>)}
+            </thead>
+            <tr className="tr"></tr>
+            {[...Array(parseInt((noOfDays + monthStartsOn) / 7))].map(
           (key, week) => {
             return (
-              <tr class="tr">
+              <tbody className="tr">
                 {[...Array(7)].map((key2, day) => {
-                  console.log("Check", Number(MonthNow));
+                 
                   return (
                     <>
-                      {week * 7 + day + 1 <= MonthStartsOn ? (
-                        <td class="th"> </td>
+                      {week * 7 + day + 1 <= monthStartsOn ? (
+                        <td className="th"> </td>
                       ) : (
                         <td
                           style={
-                            Number(DayNow) ===
-                              Number(week * 7 + day + 1 - MonthStartsOn) &&
-                            Number(MonthNow + 1) === Number(selectedM) &&
-                            selectedY === YearNow
+                            Number(dayNow) ===
+                              Number(week * 7 + day + 1 - monthStartsOn) &&
+                            Number(monthNow + 1) === Number(selectedM) &&
+                            selectedY === yearNow
                               ? { backgroundColor: "lightblue" }
                               : {}
                           }
                         >
-                          {week * 7 + day + 1 - MonthStartsOn}
+                          {week * 7 + day + 1 - monthStartsOn}
                         </td>
                       )}
                     </>
                   );
                 })}
-              </tr>
+              </tbody>
             );
           }
         )}
             
           
-            <tr class="tr">
-              {[...Array(parseInt(NoOfDays + MonthStartsOn) % 7)].map(
+            <tr className="tr">
+              {[...Array(parseInt(noOfDays + monthStartsOn) % 7)].map(
                 (key2, day) => {
                   return (
                     <>
-                      <td class="th">
-                        {parseInt((NoOfDays + MonthStartsOn) / 7) * 7 +
+                      <td className="th">
+                        {parseInt((noOfDays + monthStartsOn) / 7) * 7 +
                           day -
-                          MonthStartsOn +
+                          monthStartsOn +
                           1}
                       </td>
                     </>

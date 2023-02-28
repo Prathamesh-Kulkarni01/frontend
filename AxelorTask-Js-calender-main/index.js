@@ -1,13 +1,41 @@
 var date = new Date();
-var YearNow = date.getFullYear();
-var DayNow = date.getDate();
-console.log(DayNow);
+var yearNow = date.getFullYear();
+var dayNow = date.getDate();
 
-var MonthNow = date.getMonth();
+
+var monthNow = date.getMonth();
 
 const inputdate = document.getElementById("dateIp");
 const table = document.getElementById("table");
+onMonthSwapped=(x)=>{
 
+let selected=new Date(inputdate.value);
+if(x===-1&&selected.getMonth()===0){
+  selected.setMonth(11);
+  selected.setFullYear(selected.getFullYear()-1);
+  swappDate(selected,0,0);
+}else if(x==1&&selected.getMonth()===11){
+  selected.setMonth(0);
+  selected.setFullYear(selected.getFullYear()+1);
+  swappDate(selected,0,0);
+}else{
+  swappDate(selected,x,0);
+}
+
+}
+onYearSwapped=(x)=>{
+  let selected=new Date(inputdate.value);
+swappDate(selected,0,x);
+onDateChange()
+}
+
+const swappDate=(d,m,y)=>{
+  inputdate.value =
+    (d.getFullYear()+y).toString() +
+    "-" +
+    ((d.getMonth() + 1)+m).toString().padStart(2, 0);
+    onDateChange()
+}
 const setCurrentDate = () => {
   inputdate.value =
     date.getFullYear().toString() +
@@ -15,12 +43,10 @@ const setCurrentDate = () => {
     (date.getMonth() + 1).toString().padStart(2, 0);
 };
 const Render = (selectedDate) => {
-  var selectedMonth = selectedDate.substring(
-    selectedDate.length - 2,
-    selectedDate.length - 0
-  );
-  //extracting year and month from selected date
-  var selectedYear = selectedDate.substring(0, 4);
+   //extracting year and month from selected date
+  var selected=new Date(selectedDate);
+  var selectedMonth = selected.getMonth()+1;
+  var selectedYear = selected.getFullYear();
   var dayCount = new Date(selectedYear, selectedMonth, 0).getDate();
 
   //Calculating No of Days in this Month
@@ -40,15 +66,15 @@ const Render = (selectedDate) => {
     var cell1 = row.insertCell();
     if (Number(day) > 0) {
       cell1.innerHTML = " ";
-      // console.log(day);
+      // console. (day);
     } else {
       if (k <= dayCount) {
         cell1.innerHTML = k;
 
         if (
-          k === DayNow &&
-          Number(selectedMonth) === Number(MonthNow + 1) &&
-          Number(selectedYear) === Number(YearNow)
+          k === dayNow &&
+          Number(selectedMonth) === Number(monthNow + 1) &&
+          Number(selectedYear) === Number(yearNow)
         ) {
           cell1.style.background = "gray";
           cell1.style.color = "white";

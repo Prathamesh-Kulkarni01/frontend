@@ -5,16 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
-    <script src="/index.js" defer></script>
-    <link rel="stylesheet" href="index.css" />
+    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
     <div class="main">
       <div class="top">
      
         <div style="flex-direction: column" class="center">
-            <h2 style="margin-top: 60px">Select Date </h2>
+            <h2 style="margin-top: 50px">Select Date </h2>
+           <div style="width: 100%;display: flex;align-items:center;justify-content: center;">
+       
+            <p onclick="onMonthSwapped(-1)" id="Y_left" style="background-color: rgb(255, 255, 255);padding: 10px; border-radius: 50%;width: 15px;margin: auto;"><</p>
             <input id="dateIp" type="month" placeholder="YYYY" min="2017" max="2100" value="2023" onchange="onDateChange()"></input>
+            <p onclick="onMonthSwapped(1)" id="Y_right" style="background-color: rgb(255, 255, 255);padding: 10px; border-radius: 50%;width: 15px;margin: auto; text-align: center;">></p>
+          </div> 
+          <div style="display: flex;">
+          <p onclick="onYearSwapped(-1)" id="M_left"style="background-color: rgb(255, 255, 255);padding: 1px; border-radius: 50px;width: 50px;margin: 5px 150px;text-align: center;"><<<<</p>
+          <p onclick="onYearSwapped(1)"id="M_right"style="background-color: rgb(255, 255, 255);padding: 1px; border-radius: 50px;width: 50px;margin: 5px 150px;text-align: center;">>>>></p>
+        </div>
         </div>
       </div>
       <div style="margin-top: 10px" class="conteiner">

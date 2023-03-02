@@ -1,5 +1,5 @@
 import React from "react";
-import uuid from 'react-uuid';
+
 
 const DisplayData = (props) => {
   
@@ -28,7 +28,7 @@ const DisplayData = (props) => {
     {
         props.data.service.map(val=>{
             return(
-                <p  key={uuid()}>{val}</p>
+                <p  key={val}>{val}</p>
                
             )
         })

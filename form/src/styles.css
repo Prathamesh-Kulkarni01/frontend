@@ -15,15 +15,17 @@ form {
 lable {
   display: inline-block;
   width: 110px;
+
 }
 .radio_wrapper {
   width: 500px;
   display: flex;
+  
 }
 .radio_lable {
   display: flex;
 }
-.radio_lable lable {
+.radio_lable lable{
   margin: auto;
 }
 

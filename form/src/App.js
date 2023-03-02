@@ -68,9 +68,9 @@ export default function App() {
       <form>
         <div className="main">
           <div>
-            <lable className="lable" htmlFor="#Username">
+            <label className="lable" htmlFor="#Username">
               Username:{" "}
-            </lable>
+            </label>
             <input
               id="Username"
               type="text"
@@ -93,9 +93,9 @@ export default function App() {
             )}
           </div>
           <div>
-            <lable className="lable" htmlFor="#password">
+            <label className="lable" htmlFor="#password">
               Password:{" "}
-            </lable>
+            </label>
             <input
               id="password"
               type="password"
@@ -124,7 +124,7 @@ export default function App() {
               alignItems: "center",
             }}
           >
-            <lable className="lable">City of Employment </lable>
+            <label className="lable">City of Employment </label>
             <div>
               <input
                 id="city"
@@ -136,7 +136,7 @@ export default function App() {
             </div>
           </div>
           <div>
-            <lable htmlFor="#web_server">Web server</lable>
+            <label htmlFor="#web_server">Web server</label>
             <select
               id="web_server"
               onChange={(e) =>
@@ -155,7 +155,7 @@ export default function App() {
             onChange={(e) => setFormData({ ...formData, role: e.target.value })}
           >
             <div className="radio_lable">
-              <lable>Please specify your role</lable>
+              <label>Please specify your role</label>
             </div>
             <div className="radio_group">
               {radioList.map((val) => {
@@ -163,11 +163,11 @@ export default function App() {
                   <div key={val} className="radio_btn">
                     <input
                       type="radio"
-                      id="Engineer"
+                      id={`${val}`}
                       value={val}
                       name="role"
                     ></input>
-                    <lable htmlFor="#Engineer">{val}</lable>
+                    <label htmlFor={`#${val}`}>{val}</label>
                   </div>
                 );
               })}
@@ -176,7 +176,7 @@ export default function App() {
 
           <div style={{ marginTop: " 10px" }} className="radio_wrapper">
             <div className="radio_lable">
-              <lable>Single Sign-on to the following</lable>
+              <label>Single Sign-on to the following</label>
             </div>
             <div className="radio_group">
               {checkList.map((val) => {
@@ -189,7 +189,7 @@ export default function App() {
                       name="role"
                       onChange={handleCheck}
                     ></input>
-                    <lable htmlFor={`#${val}`}>{val}</lable>
+                    <label htmlFor={`#${val}`}>{val}</label>
                   </div>
                 );
               })}

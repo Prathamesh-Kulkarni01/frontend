@@ -5,13 +5,14 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const yearNow = moment().year();
-  const monthNow = moment().month();
-  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 
   const [inputDate, setInputDate] = useState(
-    moment().year() + "-" +(Number(moment().month()) + 1)
+    moment().year() + "-" +(Number(moment().month()) + 1).toString().padStart(2, 0)
   );
+
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
   const selected = moment(inputDate);
   const selectedM = selected.month() + 1;
   const selectedY = selected.year();
@@ -38,11 +39,11 @@ function App() {
     changeDate();
   };
 
-  const changeDate = (newDate = selected) => {
+  const changeDate = (date = selected) => {
     setInputDate(
-      newDate.year().toString() +
+      date.year().toString() +
         "-" +
-        (Number(newDate.month()) + 1).toString().padStart(2, 0)
+        (Number(date.month()) + 1).toString().padStart(2, 0)
     );
   };
 

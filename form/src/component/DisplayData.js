@@ -2,7 +2,7 @@ import React from "react";
 
 
 const DisplayData = (props) => {
-  console.log(props.data);
+
   return (
     <div style={props.data.name===''?{display:"none"}:{}} className="display">
       <h3 style={{marginLeft:"80px"}}>Login Sucessfull</h3>  

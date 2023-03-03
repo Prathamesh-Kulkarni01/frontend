@@ -8,23 +8,24 @@
 <script src="/AxelorTask-Form_with_HTML_JS/index.js" defer></script>
 </head>
 <body>
-<form>
+<form id="form" onsubmit="return InvalidMsg()">
   <div class="main">
-    <form >
-      </form>
+   
       <div>
       <lable class="lable" for="#Username">Username: </lable>
       <input id="Username"  
              type="text" />
             </div>
+            <p id="nameError" style="font-size: small;color: red;margin: 0px 120px;"></p>
     <div>
       <lable class="lable" for="#password">Password:</lable>
       <input id="password" type="password" />
+      <p id="passwordError" style="font-size: small;color: red;margin:0 0 0 120px;"></p>
     </div>
     <div style="display: flex; align-items:center;">
       <lable class="lable">City of Employment </lable>
       <div>
-        <input id="password" type="text" />
+        <input id="" type="text" />
       </div>
     </div>
     <div>
@@ -35,7 +36,6 @@
         <option value="--Choose a server--">France</option>
         <option value="--Choose a server--">Surat</option>
         <option value="--Choose a server--">Bengluru</option>
-
       </select>
     </div>
     <fildset style="margin-top: 15px;" class="radio_wrapper">
@@ -83,7 +83,7 @@
     </fildset>
 
     <div  class="btn_holder">
-      <button class="btn" onclick="InvalidMsg()"> Login</button>
+      <button class="btn" type="submit"> Login</button>
 
       <button class="btn" type="reset"> Reset</button>
     </div>

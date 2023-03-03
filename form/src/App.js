@@ -17,14 +17,14 @@ export default function App() {
 
   const [nameErr, setNameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
-  const [display, setDisplay] = useState(undefined);
+  const [display, setDisplay] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setDisplay(false)
     setNameErr("");
     setPasswordErr("");
     if (formData.name === "") {
-      console.log(name);
       setNameErr("Username Required");
     } else {
       setNameErr("");
@@ -35,13 +35,13 @@ export default function App() {
 
       return false;
     } else {
-      if (formData.password.length < 8) {
+      if ("---------->",formData.password.length < 8) {
         setPasswordErr("Minimum 8 digit long password required !");
 
         return false;
       }
       console.log(formData.password.search(/[0-9]/));
-      if (Number(formData.password.search(/[0-9]/)) < 1) {
+      if (Number((""+formData.password).search(/[0-9]/)) < 0) {
         setPasswordErr("Password must contain atleast one digit !");
 
         return false;
@@ -205,9 +205,9 @@ export default function App() {
             <button className="btn"> Reset</button>
           </div>
           <div style={{ marginTop: "20px" }}>
-            {display && display === true && (
-              <DisplayData data={formData}></DisplayData>
-            )}
+            {display === true ? 
+              <DisplayData data={formData}></DisplayData>:""
+            }
           </div>
         </div>
       </form>

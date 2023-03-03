@@ -21,7 +21,7 @@ const BlogItem = () => {
               consectetur adipisicing elit.adipisicing elit. consectetur
               adipisicing elit. Numquam ullam, tenetur ad natus asperiores
               harum. Dolor, tenetur consequatur! Sapiente natus .....
-              <a>Read More</a>
+              <span >Read More</span>
             </p>
           </div>
         </div>

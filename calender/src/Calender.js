@@ -1,10 +1,10 @@
 import moment from "moment";
 
-import "./App.css";
 import { useState } from "react";
 
-function App() {
+import "./App.css";
 
+function App() {
   const yearNow = moment().year();
   const dayNow = moment().day();
   const monthNow = moment().month();
@@ -47,7 +47,6 @@ function App() {
         (Number(d.month()) + 1).toString().padStart(2, 0)
     );
   };
- 
 
   return (
     <div className="App">
@@ -133,61 +132,68 @@ function App() {
           <table id="table" className="table">
             <thead id="ll" className="tr">
               <tr>
-              {weekdays.map((val) => (
-                <th key={val} className="th">
-                  {val}
-                </th>
-              ))}
+                {weekdays.map((val) => (
+                  <th key={val} className="th">
+                    {val}
+                  </th>
+                ))}
               </tr>
             </thead>
-          <tbody>
-            {[...Array(parseInt((noOfDays + monthStartsOn) / 7))].map(
-              (key, week) => {
-                return (
-                  <tr key={key} className="tr">
-                    {[...Array(7)].map((key2, day) => {
-                      return (
-                        <>
-                          {week * 7 + day + 1 <= monthStartsOn ? (
-                            <td className="th"> </td>
-                          ) : (
-                            <td key={key2}
-                              style={
-                                Number(dayNow) ===
-                                  Number(week * 7 + day + 1 - monthStartsOn) &&
-                                Number(monthNow + 1) === Number(selectedM) &&
-                                selectedY === yearNow
-                                  ? { backgroundColor: "lightblue" }
-                                  : {}
-                              }
-                            >
-                              {week * 7 + day + 1 - monthStartsOn}
-                            </td>
-                          )}
-                        </>
-                      );
-                    })}
-                  </tr>
-                );
-              }
-            )}
-
-            <tr className="tr">
-              {[...Array(parseInt(noOfDays + monthStartsOn) % 7)].map(
-                (key2, day) => {
+            <tbody>
+              {[...Array(parseInt((noOfDays + monthStartsOn) / 7))].map(
+                (key, week) => {
                   return (
-                    <>
-                      <td className="th">
-                        {parseInt((noOfDays + monthStartsOn) / 7) * 7 +
-                          day -
-                          monthStartsOn +
-                          1}
-                      </td>
-                    </>
+                    <tr key={key} className="tr">
+                      {[...Array(7)].map((key2, day) => {
+                        var currentCellDate = moment(
+                          selectedY +
+                            "-" +
+                            selectedM +
+                            "-" +
+                            Number(week * 7 + day + 1 - monthStartsOn)
+                        );
+
+                        return (
+                          <>
+                            {week * 7 + day + 1 <= monthStartsOn ? (
+                              <td className="th"> </td>
+                            ) : (
+                              <td
+                                key={key2}
+                                style={
+                                  currentCellDate.format("l") ===
+                                  moment().format("l")
+                                    ? { backgroundColor: "lightblue" }
+                                    : {}
+                                }
+                              >
+                                {week * 7 + day + 1 - monthStartsOn}
+                              </td>
+                            )}
+                          </>
+                        );
+                      })}
+                    </tr>
                   );
                 }
               )}
-            </tr>
+
+              <tr className="tr">
+                {[...Array(parseInt(noOfDays + monthStartsOn) % 7)].map(
+                  (key2, day) => {
+                    return (
+                      <>
+                        <td className="th">
+                          {parseInt((noOfDays + monthStartsOn) / 7) * 7 +
+                            day -
+                            monthStartsOn +
+                            1}
+                        </td>
+                      </>
+                    );
+                  }
+                )}
+              </tr>
             </tbody>
           </table>
         </div>

@@ -6,14 +6,12 @@ import "./App.css";
 
 function App() {
   const yearNow = moment().year();
-  const dayNow = moment().day();
   const monthNow = moment().month();
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const [inputDate, setInputDate] = useState(
-    yearNow.toString() + "-" + (monthNow + 1).toString().padStart(2, 0)
+    moment().year() + "-" +(Number(moment().month()) + 1)
   );
-
   const selected = moment(inputDate);
   const selectedM = selected.month() + 1;
   const selectedY = selected.year();
@@ -40,11 +38,11 @@ function App() {
     changeDate();
   };
 
-  const changeDate = (d = selected) => {
+  const changeDate = (newDate = selected) => {
     setInputDate(
-      d.year().toString() +
+      newDate.year().toString() +
         "-" +
-        (Number(d.month()) + 1).toString().padStart(2, 0)
+        (Number(newDate.month()) + 1).toString().padStart(2, 0)
     );
   };
 

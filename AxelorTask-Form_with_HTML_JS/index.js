@@ -23,7 +23,7 @@ const passwordError=document.getElementById("passwordError");
               passwordError.innerHTML='Minimum 8 digit long password required !';
       return false;
         }
-     
+     console.log(password.value.search(/[0-9]/) );
           if (password.value.search(/[0-9]/) <0){
             passwordError.innerHTML="Password must contain atleast one digit !";
       return false
@@ -38,4 +38,10 @@ const passwordError=document.getElementById("passwordError");
         
 return true;
      
+ }
+
+ function onReset(){
+  nameError.innerText=""
+  passwordError.innerText=""
+
  }

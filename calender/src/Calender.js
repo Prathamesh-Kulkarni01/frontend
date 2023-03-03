@@ -1,55 +1,53 @@
+import moment from "moment";
 
 import "./App.css";
 import { useState } from "react";
 
 function App() {
 
+  const yearNow = moment().year();
+  const dayNow = moment().day();
+  const monthNow = moment().month();
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+  const [inputDate, setInputDate] = useState(
+    yearNow.toString() + "-" + (monthNow + 1).toString().padStart(2, 0)
+  );
 
-  
-  const date = new Date();
+  const selected = moment(inputDate);
+  const selectedM = selected.month() + 1;
+  const selectedY = selected.year();
 
-  const yearNow = date.getFullYear();
-  const dayNow = date.getDate();
-  const monthNow = date.getMonth();
-  const [inputDate, setInputDate] = useState(yearNow.toString() +"-" +(monthNow+ 1).toString().padStart(2, 0));
-  const selected=new Date(inputDate);
-  const selectedM = selected.getMonth()+1;
-  const selectedY = selected.getFullYear();
-  const noOfDays= new Date(selectedY, selectedM, 0).getDate();
-  const monthStartsOn =new Date(selectedY + "-" + selectedM + "-01").getDay();
+  const noOfDays = selected.daysInMonth();
+  const monthStartsOn = Number(moment(selected).startOf("month").format("d"));
 
-const weekdays=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-
- const onMonthSwapped=(x)=>{
-
-    let selected=new Date(inputDate);
-    if(x===-1&&selected.getMonth()===0){
-      selected.setMonth(11);
-      selected.setFullYear(selected.getFullYear()-1);
-      swappDate(selected,0,0);
-    }else if(x===1&&selected.getMonth()===11){
-      selected.setMonth(0);
-      selected.setFullYear(selected.getFullYear()+1);
-      swappDate(selected,0,0);
-    }else{
-      swappDate(selected,x,0);
+  const onMonthSwapped = (next) => {
+    const selected = moment(inputDate);
+    if (!next && selected.month() === 0) {
+      selected.set("month", 11);
+      selected.subtract(1, "Y");
+    } else if (next && selected.month() === 11) {
+      selected.set("month", 0);
+      selected.add(1, "Y");
+    } else {
+      next ? selected.add(1, "M") : selected.subtract(1, "M");
     }
-    
-    }
-    const onYearSwapped=(x)=>{
-      let selected=new Date(inputDate);
-    swappDate(selected,0,x);
-   
-    }
-    
-    const swappDate=(d,m,y)=>{
-     setInputDate(
-        (d.getFullYear()+y).toString() +
+    changeDate(selected);
+  };
+
+  const onYearSwapped = (increment) => {
+    increment ? selected.add(1, "Y") : selected.subtract(1, "Y");
+    changeDate();
+  };
+
+  const changeDate = (d = selected) => {
+    setInputDate(
+      d.year().toString() +
         "-" +
-        ((d.getMonth() + 1)+m).toString().padStart(2, 0));
-        
-    }
+        (Number(d.month()) + 1).toString().padStart(2, 0)
+    );
+  };
+ 
 
   return (
     <div className="App">
@@ -57,64 +55,123 @@ const weekdays=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
         <div className="top">
           <div style={{ flexDirection: "column" }} className="center">
             <h2 style={{ marginTop: "50px" }}>Select Date </h2>
-            <div style={{width: "100%",display: "flex",alignItems:"center",justifyContent:" center"}}>
-            <p onClick={()=>onMonthSwapped(-1)}id="Y_left" style={{backgroundColor: "rgb(255, 255, 255)",padding: "10px", borderRadius: "50%",width: "15px",margin: "auto"}}>&lt;</p>
-            <input
-              id="dateIp"
-              type="month"
-              placeholder="YYYY"
-              min="2017"
-              max="2100"
-              value={inputDate}
-              onChange={(e) => setInputDate(e.target.value)}
-            ></input>
-                        <p onClick={()=>onMonthSwapped(1)} id="Y_left" style={{backgroundColor: "rgb(255, 255, 255)",padding: "10px", borderRadius: "50%",width: "15px",margin: "auto"}}>&gt;</p>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: " center",
+              }}
+            >
+              <p
+                onClick={() => onMonthSwapped(false)}
+                id="Y_left"
+                style={{
+                  backgroundColor: "rgb(255, 255, 255)",
+                  padding: "10px",
+                  borderRadius: "50%",
+                  width: "15px",
+                  margin: "auto",
+                }}
+              >
+                &lt;
+              </p>
+              <input
+                id="dateIp"
+                type="month"
+                placeholder="YYYY"
+                min="2017"
+                max="2100"
+                value={inputDate}
+                onChange={(e) => setInputDate(e.target.value)}
+              ></input>
+              <p
+                onClick={() => onMonthSwapped(true)}
+                id="Y_left"
+                style={{
+                  backgroundColor: "rgb(255, 255, 255)",
+                  padding: "10px",
+                  borderRadius: "50%",
+                  width: "15px",
+                  margin: "auto",
+                }}
+              >
+                &gt;
+              </p>
+            </div>
           </div>
+          <div style={{ display: "flex" }}>
+            <p
+              onClick={() => onYearSwapped(false)}
+              id="Y_left"
+              style={{
+                backgroundColor: "rgb(255, 255, 255)",
+                padding: "3px",
+                borderRadius: "50px",
+                width: "50px",
+                margin: "5px auto",
+              }}
+            >
+              &lt;&lt;&lt;
+            </p>
+            <p
+              onClick={() => onYearSwapped(true)}
+              id="Y_left"
+              style={{
+                backgroundColor: "rgb(255, 255, 255)",
+                padding: "3px",
+                borderRadius: "50px",
+                width: "50px",
+                margin: "5px auto",
+              }}
+            >
+              &gt;&gt;&gt;
+            </p>
           </div>
-          <div style={{display: "flex"}}>
-          <p onClick={()=>onYearSwapped(-1)} id="Y_left" style={{backgroundColor: "rgb(255, 255, 255)",padding: "3px", borderRadius: "50px",width: "50px",margin: "5px auto"}}>&lt;&lt;&lt;</p>
-          <p onClick={()=>onYearSwapped(1)} id="Y_left" style={{backgroundColor: "rgb(255, 255, 255)",padding: "3px", borderRadius: "50px",width: "50px",margin: "5px auto"}}>&gt;&gt;&gt;</p>
-        </div>
         </div>
         <div style={{ marginTop: "10px" }} className="conteiner">
           <table id="table" className="table">
             <thead id="ll" className="tr">
-              {weekdays.map(val=> <th key={val} className="th">{val}</th>)}
+              <tr>
+              {weekdays.map((val) => (
+                <th key={val} className="th">
+                  {val}
+                </th>
+              ))}
+              </tr>
             </thead>
-            <tr className="tr"></tr>
+          <tbody>
             {[...Array(parseInt((noOfDays + monthStartsOn) / 7))].map(
-          (key, week) => {
-            return (
-              <tbody className="tr">
-                {[...Array(7)].map((key2, day) => {
-                 
-                  return (
-                    <>
-                      {week * 7 + day + 1 <= monthStartsOn ? (
-                        <td className="th"> </td>
-                      ) : (
-                        <td
-                          style={
-                            Number(dayNow) ===
-                              Number(week * 7 + day + 1 - monthStartsOn) &&
-                            Number(monthNow + 1) === Number(selectedM) &&
-                            selectedY === yearNow
-                              ? { backgroundColor: "lightblue" }
-                              : {}
-                          }
-                        >
-                          {week * 7 + day + 1 - monthStartsOn}
-                        </td>
-                      )}
-                    </>
-                  );
-                })}
-              </tbody>
-            );
-          }
-        )}
-            
-          
+              (key, week) => {
+                return (
+                  <tr key={key} className="tr">
+                    {[...Array(7)].map((key2, day) => {
+                      return (
+                        <>
+                          {week * 7 + day + 1 <= monthStartsOn ? (
+                            <td className="th"> </td>
+                          ) : (
+                            <td key={key2}
+                              style={
+                                Number(dayNow) ===
+                                  Number(week * 7 + day + 1 - monthStartsOn) &&
+                                Number(monthNow + 1) === Number(selectedM) &&
+                                selectedY === yearNow
+                                  ? { backgroundColor: "lightblue" }
+                                  : {}
+                              }
+                            >
+                              {week * 7 + day + 1 - monthStartsOn}
+                            </td>
+                          )}
+                        </>
+                      );
+                    })}
+                  </tr>
+                );
+              }
+            )}
+
             <tr className="tr">
               {[...Array(parseInt(noOfDays + monthStartsOn) % 7)].map(
                 (key2, day) => {
@@ -131,6 +188,7 @@ const weekdays=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
                 }
               )}
             </tr>
+            </tbody>
           </table>
         </div>
       </div>

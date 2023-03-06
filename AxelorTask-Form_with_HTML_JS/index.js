@@ -1,38 +1,47 @@
 
 const username=document.getElementById("Username");
 const password=document.getElementById("password");
-const tost=document.getElementById("tost");
+const nameError=document.getElementById("nameError");
+const passwordError=document.getElementById("passwordError");
 
 
-username.value="";
-password.value="";
- function InvalidMsg(){
- 
-   username.setCustomValidity('');
-     password.setCustomValidity('');
+ function InvalidMsg(e){
+  nameError.innerText=""
+  passwordError.innerHTML=''
    console.log(username.value);
     if (username.value==="") {
-       username.setCustomValidity('Username Required');
-        }
-   
+       nameError.innerText="Username Required !"
+       
+    }
    if (password.value === "") {
-            password.setCustomValidity('Password required !' );
+    passwordError.innerHTML='Password required !'
+   
       return false;
         }else{
             if (password.value.length < 8) {
-            password.setCustomValidity('Minimum 8 digit long password required !');
+
+              passwordError.innerHTML='Minimum 8 digit long password required !';
       return false;
         }
-          console.log(password.value.search(/[0-9]/));
+     console.log(password.value.search(/[0-9]/) );
           if (password.value.search(/[0-9]/) <0){
-            password.setCustomValidity('Password must contain atleast one digit !');
-      return false;
+            passwordError.innerHTML="Password must contain atleast one digit !";
+      return false
         }
         
         }
-        username.setCustomValidity('');
-           password.setCustomValidity('');
+    
+       
+       
+          alert("Login Sucessfull...!");
+      
         
-alert("Login Sucessfull...!");
-        return true;
+return true;
+     
+ }
+
+ function onReset(){
+  nameError.innerText=""
+  passwordError.innerText=""
+
  }

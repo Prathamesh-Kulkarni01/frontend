@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/AxelorTask-Form_with_HTML_JS/index.css">
+<script src="/AxelorTask-Form_with_HTML_JS/index.js" defer></script>
+</head>
+<body>
+<form id="form" onsubmit="return InvalidMsg()">
+  <div class="main">
+   
+      <div>
+      <lable class="lable" for="#Username">Username: </lable>
+      <input id="Username"  
+             type="text" />
+            </div>
+            <p id="nameError" style="font-size: small;color: red;margin: 0px 120px;"></p>
+    <div>
+      <lable class="lable" for="#password">Password:</lable>
+      <input id="password" type="password" />
+      <p id="passwordError" style="font-size: small;color: red;margin:0 0 0 120px;"></p>
+    </div>
+    <div style="display: flex; align-items:center;">
+      <lable class="lable">City of Employment </lable>
+      <div>
+        <input id="" type="text" />
+      </div>
+    </div>
+    <div>
+
+      <lable for="#web_server">Web server</lable>
+      <select id="web_server">
+        <option value="--Choose a server--">--Choose a server--</option>
+        <option value="--Choose a server--">France</option>
+        <option value="--Choose a server--">Surat</option>
+        <option value="--Choose a server--">Bengluru</option>
+      </select>
+    </div>
+    <fildset style="margin-top: 15px;" class="radio_wrapper">
+      <div class="radio_lable">
+        <lable>Please specify your role</lable>
+      </div>
+      <div class="radio_group">
+        <div class="radio_btn">
+          <input type="radio" id="Engineer" value="" name="role"></input>
+          <label for="#Engineer">Admin</label>
+        </div>
+        <div class="radio_btn">
+          <input type="radio" id="Engineer" value="" name="role"></input>
+          <label for="#Engineer">Engineer</label>
+        </div>
+        <div class="radio_btn">
+          <input type="radio" id="Engineer" value="" name="role"></input>
+          <label for="#Engineer">Manager</label>
+        </div>
+        <div class="radio_btn">
+          <input type="radio" id="Engineer" value="" name="role"></input>
+          <label for="#Engineer">Guest</label>
+        </div>
+      </div>
+    </fildset>
+ 
+    <fildset style="margin-top: 15px;" class="radio_wrapper">
+      <div class="radio_lable">
+        <lable>Single Sign-on to the following</lable>
+      </div>
+      <div class="radio_group">
+        <div class="radio_btn">
+          <input type="checkbox" id="Engineer" value="" name="role"></input>
+          <label for="#Engineer">Mail</label>
+        </div>
+        <div class="radio_btn">
+          <input type="checkbox" id="Engineer" value="" name="role"></input>
+          <label for="#Engineer">Payroll</label>
+        </div>
+        <div class="radio_btn">
+          <input type="checkbox" id="Engineer" value="" name="role"></input>
+          <label for="#Engineer">Self-service</label>
+        </div>
+      </div>
+    </fildset>
+
+    <div  class="btn_holder">
+      <button class="btn" type="submit"> Login</button>
+
+      <button class="btn" type="reset"> Reset</button>
+    </div>
+
+  </div>
+</form>
+</body>
+</html>

@@ -1,13 +1,13 @@
 .about_body {
   justify-content: center;
-  width: 100%;
+
 }
 .blog_holder {
   width: 100%;
 }
 .blog_container {
   border: 1px solid gray;
-height: 400px;
+
   margin: 10px 20px;
 
   overflow: hidden;
@@ -36,6 +36,7 @@ height: 400px;
 @media screen and (max-width: 800px) {
   .blog_container {
    margin: 0px 20px;
+   height: 400px;
   }
   .blog_body {
     flex-direction: column;

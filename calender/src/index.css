@@ -62,3 +62,6 @@ td:nth-child(1) {
 td:nth-child(6) {
   color: green;
 }
+.selectedDate{
+  color: blue;
+}

@@ -7,11 +7,11 @@ const Blog = () => {
 
   return (
     <div>
-         <div class="page_body">
+         <div className="page_body">
            <TopImg img="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg"></TopImg>
-                <h1 class="name">Blogs !</h1>
+                <h1 className="name">Blogs !</h1>
                <ExtraInfo></ExtraInfo>
-                <div class="page_body" >
+                <div className="page_body" >
                 <BlogItem></BlogItem>
                 <BlogItem></BlogItem>
                 <BlogItem></BlogItem>

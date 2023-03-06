@@ -1,10 +1,10 @@
 import React from "react";
-import uuid from 'react-uuid';
+
 
 const DisplayData = (props) => {
-  
+
   return (
-    <div className="display">
+    <div style={props.data.name===''?{display:"none"}:{}} className="display">
       <h3 style={{marginLeft:"80px"}}>Login Sucessfull</h3>  
       <div>
         <h4>Name   :</h4>
@@ -28,7 +28,7 @@ const DisplayData = (props) => {
     {
         props.data.service.map(val=>{
             return(
-                <p  key={uuid()}>{val}</p>
+                <p  key={val}>{val}</p>
                
             )
         })

@@ -6,12 +6,12 @@ import TopImg from './components/TopImg'
 const Contacts = () => {
   return (
     <div>
-         <div class="page_body">
+         <div className="page_body">
           
             <TopImg img="https://upload.wikimedia.org/wikipedia/commons/9/93/Google_Contacts_icon.svg"></TopImg>
-                <h1 class="name">Contact Me !</h1>
+                <h1 className="name">Contact Me !</h1>
              
-                <div class="page_body" >
+                <div className="page_body" >
                 <ExtraInfo></ExtraInfo>
                 <ContactForm></ContactForm>
                

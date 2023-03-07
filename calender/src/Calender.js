@@ -59,6 +59,7 @@ function App() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: " center",
+                cursor: "pointer"
               }}
             >
               <p
@@ -70,6 +71,7 @@ function App() {
                   borderRadius: "50%",
                   width: "15px",
                   margin: "auto",
+                  cursor: "pointer"
                 }}
               >
                 &lt;
@@ -92,6 +94,7 @@ function App() {
                   borderRadius: "50%",
                   width: "15px",
                   margin: "auto",
+                  cursor: "pointer"
                 }}
               >
                 &gt;
@@ -108,6 +111,7 @@ function App() {
                 borderRadius: "50px",
                 width: "50px",
                 margin: "5px auto",
+                cursor: "pointer"
               }}
             >
               &lt;&lt;&lt;

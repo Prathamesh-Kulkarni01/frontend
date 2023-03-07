@@ -11,7 +11,7 @@ export default function App() {
     role: "",
     service: [],
   });
-
+const [upadatedData, setUpadatedData] = useState(undefined)
   const checkList = ["Mail", "Payroll", "Self-service"];
   const radioList = ["Admin", "Engineer", "Manager", "Guest"];
 
@@ -47,6 +47,7 @@ export default function App() {
         return false;
       }
     }
+    setUpadatedData(formData)
     setDisplay(true);
     return true;
   };
@@ -206,7 +207,7 @@ export default function App() {
           </div>
           <div style={{ marginTop: "20px" }}>
             {display === true ? 
-              <DisplayData data={formData}></DisplayData>:""
+              <DisplayData data={upadatedData}></DisplayData>:""
             }
           </div>
         </div>

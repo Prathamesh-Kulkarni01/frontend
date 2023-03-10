@@ -1,14 +1,16 @@
 import moment from "moment";
 
-import { useState } from "react";
+import uniqid from "uniqid";
+
+import React, { useState } from "react";
 
 import "./App.css";
 
 function App() {
-
-
   const [inputDate, setInputDate] = useState(
-    moment().year() + "-" +(Number(moment().month()) + 1).toString().padStart(2, 0)
+    moment().year() +
+      "-" +
+      (Number(moment().month()) + 1).toString().padStart(2, 0)
   );
 
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -20,7 +22,10 @@ function App() {
   const noOfDays = selected.daysInMonth();
   const monthStartsOn = Number(moment(selected).startOf("month").format("d"));
 
-  const onMonthSwapped = (next) => {
+  const totalDaysArray = [...Array(Math.ceil((noOfDays + monthStartsOn) / 7))];
+  const weekArray = [...Array(7)];
+
+  const changeMonth = (next) => {
     const selected = moment(inputDate);
     if (!next && selected.month() === 0) {
       selected.set("month", 11);
@@ -34,7 +39,7 @@ function App() {
     changeDate(selected);
   };
 
-  const onYearSwapped = (increment) => {
+  const changeYear = (increment) => {
     increment ? selected.add(1, "Y") : selected.subtract(1, "Y");
     changeDate();
   };
@@ -59,11 +64,11 @@ function App() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: " center",
-                cursor: "pointer"
+                cursor: "pointer",
               }}
             >
               <p
-                onClick={() => onMonthSwapped(false)}
+                onClick={() => changeMonth(false)}
                 id="Y_left"
                 style={{
                   backgroundColor: "rgb(255, 255, 255)",
@@ -71,7 +76,7 @@ function App() {
                   borderRadius: "50%",
                   width: "15px",
                   margin: "auto",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
               >
                 &lt;
@@ -86,7 +91,7 @@ function App() {
                 onChange={(e) => setInputDate(e.target.value)}
               ></input>
               <p
-                onClick={() => onMonthSwapped(true)}
+                onClick={() => changeMonth(true)}
                 id="Y_left"
                 style={{
                   backgroundColor: "rgb(255, 255, 255)",
@@ -94,7 +99,7 @@ function App() {
                   borderRadius: "50%",
                   width: "15px",
                   margin: "auto",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
               >
                 &gt;
@@ -103,7 +108,7 @@ function App() {
           </div>
           <div style={{ display: "flex" }}>
             <p
-              onClick={() => onYearSwapped(false)}
+              onClick={() => changeYear(false)}
               id="Y_left"
               style={{
                 backgroundColor: "rgb(255, 255, 255)",
@@ -111,13 +116,13 @@ function App() {
                 borderRadius: "50px",
                 width: "50px",
                 margin: "5px auto",
-                cursor: "pointer"
+                cursor: "pointer",
               }}
             >
               &lt;&lt;&lt;
             </p>
             <p
-              onClick={() => onYearSwapped(true)}
+              onClick={() => changeYear(true)}
               id="Y_left"
               style={{
                 backgroundColor: "rgb(255, 255, 255)",
@@ -125,6 +130,7 @@ function App() {
                 borderRadius: "50px",
                 width: "50px",
                 margin: "5px auto",
+                cursor: "pointer",
               }}
             >
               &gt;&gt;&gt;
@@ -143,60 +149,42 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              {[...Array(parseInt((noOfDays + monthStartsOn) / 7))].map(
-                (key, week) => {
-                  return (
-                    <tr key={key} className="tr">
-                      {[...Array(7)].map((key2, day) => {
-                        var currentCellDate = moment(
-                          selectedY +
-                            "-" +
-                            selectedM +
-                            "-" +
-                            Number(week * 7 + day + 1 - monthStartsOn)
-                        );
+              {totalDaysArray.map((key, week) => {
+                return (
+                  <tr key={uniqid()} className="tr">
+                    {weekArray.map((key2, day) => {
+                      var currentCellDate = moment(
+                        selectedY +
+                          "-" +
+                          selectedM +
+                          "-" +
+                          Number(week * 7 + day + 1 - monthStartsOn)
+                      );
 
-                        return (
-                          <>
-                            {week * 7 + day + 1 <= monthStartsOn ? (
-                              <td className="th"> </td>
-                            ) : (
-                              <td
-                                key={key2}
-                                style={
-                                  currentCellDate.format("l") ===
-                                  moment().format("l")
-                                    ? { backgroundColor: "lightblue" }
-                                    : {}
-                                }
-                              >
-                                {week * 7 + day + 1 - monthStartsOn}
-                              </td>
-                            )}
-                          </>
-                        );
-                      })}
-                    </tr>
-                  );
-                }
-              )}
-
-              <tr className="tr">
-                {[...Array(parseInt(noOfDays + monthStartsOn) % 7)].map(
-                  (key2, day) => {
-                    return (
-                      <>
-                        <td className="th">
-                          {parseInt((noOfDays + monthStartsOn) / 7) * 7 +
-                            day -
-                            monthStartsOn +
-                            1}
-                        </td>
-                      </>
-                    );
-                  }
-                )}
-              </tr>
+                      return (
+                        <React.Fragment key={uniqid()}>
+                          {week * 7 + day + 1 <= monthStartsOn ||
+                          week * 7 + day + 1 - monthStartsOn > noOfDays ? (
+                            <td className="th"> </td>
+                          ) : (
+                            <td
+                              key={uniqid()}
+                              style={
+                                currentCellDate.format("l") ===
+                                moment().format("l")
+                                  ? { backgroundColor: "lightblue" }
+                                  : {}
+                              }
+                            >
+                              {week * 7 + day + 1 - monthStartsOn}
+                            </td>
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

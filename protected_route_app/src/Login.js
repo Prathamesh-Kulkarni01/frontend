@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { parse } from "cookie";
 
 const Login = () => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const cookies = parse(document.cookie);
+  const userCookieValue = cookies.user;
+
   const handleSubmit = () => {
-    if (user.username === "admin" && user.password === "admin") {
-      localStorage.setItem("user", true);
+    if (user.username.trim() === "admin" && user.password.trim() === "admin") {
+      document.cookie = "user=admin";
       navigate("/");
     } else {
       alert("Credentials wrong");
     }
   };
+  useEffect(() => {
+    if (userCookieValue === "admin") navigate("/");
+  }, [navigate, userCookieValue]);
+
   return (
-    <div
-    className="container">
+    <div className="container">
       <input
         placeholder="username"
         onChange={(e) =>

@@ -8,7 +8,7 @@ const Home = () => {
         <h2>Hello Admin ! Welcome to Dashboard</h2>
       <button
         onClick={() => {
-          localStorage.removeItem("user");
+          document.cookie = "user=null"
           navigate("/login");
         }}
       >

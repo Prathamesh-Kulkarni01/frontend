@@ -1,11 +1,12 @@
-import { parse } from "cookie";
-import { Navigate } from "react-router-dom";
+import React from 'react'
 
-const ProtectedRoute = ({ children }) => {
-  const cookies = parse(document.cookie);
-  const userCookieValue = cookies.user;
-  if (userCookieValue !== "admin") return <Navigate to="/login" replace />;
-  return children;
+import {Navigate} from "react-router-dom"
+
+const ProtectedRoute = ({children}) => {
+    if(localStorage.getItem("user")!=="admin") {
+        return <Navigate to="/login"  replace />
+    }
+ return children
 };
 
 export default ProtectedRoute;

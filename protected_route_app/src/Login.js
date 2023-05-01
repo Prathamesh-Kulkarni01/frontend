@@ -5,7 +5,7 @@ const Login = () => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const handleSubmit = () => {
-    if (user.username.trim() === "admin" && user.password.trim() === "admin") {
+    if (user?.username?.trim() === "admin" && user?.password?.trim() === "admin") {
       localStorage.setItem("user", "admin");
       navigate("/");
     } else {
